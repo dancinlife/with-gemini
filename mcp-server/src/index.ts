@@ -18,7 +18,7 @@ server.tool(
   {
     prompt: z.string().describe("질문 내용"),
     context: z.string().optional().describe("관련 컨텍스트 (코드, 파일 내용, 대화 기록 등)"),
-    model: z.string().optional().describe("모델명 (기본: gemini-2.5-pro)"),
+    model: z.enum(["gemini-3.5-pro", "gemini-3.5-flash"]).optional().describe("모델명 (기본: gemini-3.5-flash)"),
   },
   async ({ prompt, context, model }) => {
     try {
@@ -27,7 +27,7 @@ server.tool(
         : prompt;
 
       const response = await ai.models.generateContent({
-        model: model || "gemini-2.5-pro",
+        model: model || "gemini-3.5-flash",
         contents: fullPrompt,
       });
 
