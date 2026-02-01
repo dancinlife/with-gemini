@@ -14,7 +14,7 @@ const ai = new GoogleGenAI({
 
 server.tool(
   "ask_gemini",
-  "Gemini 모델에게 질문합니다. 컨텍스트(코드, 대화 내용 등)를 함께 전달할 수 있습니다.",
+  "Gemini 모델에게 질문합니다. 사용자가 '제미나이로', '젬으로', 'with gemini', 'ask gemini' 등의 표현을 사용하면 이 도구를 호출하세요. 컨텍스트(코드, 대화 내용 등)를 함께 전달할 수 있습니다.",
   {
     prompt: z.string().describe("질문 내용"),
     context: z.string().optional().describe("관련 컨텍스트 (코드, 파일 내용, 대화 기록 등)"),

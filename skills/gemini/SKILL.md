@@ -1,10 +1,33 @@
 ---
 name: gemini
-description: Gemini 모델에게 질문할 때 사용
+description: Gemini 모델에게 질문할 때 사용. "제미나이로", "gemini로", "젬으로" 등의 표현이 포함되면 자동 호출
 allowed-tools: mcp__with-gemini__ask_gemini
+user-invocable: true
+triggers:
+  - 제미나이로
+  - 제미나이한테
+  - 제미나이에게
+  - 젬으로
+  - 젬한테
+  - 젬에게
+  - gemini로
+  - with gemini
+  - ask gemini
+  - use gemini
 ---
 
 사용자의 질문을 Gemini에게 전달하고 응답을 반환합니다.
+
+## 트리거 키워드
+
+다음 표현이 사용자 메시지에 포함되면 이 스킬을 사용하세요:
+- 한국어: "제미나이로", "제미나이한테", "제미나이에게", "젬으로", "젬한테", "젬에게"
+- 영어: "gemini로", "with gemini", "ask gemini", "use gemini"
+
+예시:
+- "제미나이로 이 코드 분석해줘" → ask_gemini 호출
+- "젬으로 번역해줘" → ask_gemini 호출
+- "ask gemini to review this" → ask_gemini 호출
 
 질문: $ARGUMENTS
 
