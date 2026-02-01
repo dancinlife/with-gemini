@@ -48,7 +48,12 @@ claude --plugin-dir ~/dev/with-gemini
 
 | 도구명 | 설명 | 파라미터 |
 |--------|------|----------|
-| `ask_gemini` | Gemini 모델에게 질문 | `prompt` (필수), `model` (선택, 기본: gemini-2.5-pro) |
+| `ask_gemini` | Gemini 모델에게 질문 | `prompt` (필수), `context` (선택), `model` (선택) |
+
+### 지원 모델
+
+- `gemini-3-flash-preview` (기본) - 빠른 응답
+- `gemini-3-pro-preview` - 고성능
 
 ## 요구사항
 
