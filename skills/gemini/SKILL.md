@@ -41,3 +41,12 @@ triggers:
 예시:
 - "이 코드 리뷰해줘" → 해당 코드를 context에, "이 코드를 리뷰해주세요"를 prompt에
 - "이 에러 해결해줘" → 에러 메시지와 관련 코드를 context에 포함
+
+## 이미지 전달
+
+이미지 파일을 Gemini에게 전달할 수 있습니다:
+- `imagePaths` 파라미터에 이미지 파일 경로 배열 전달
+- 지원 형식: PNG, JPG, JPEG, GIF, WEBP
+
+예시:
+- "이 스크린샷 분석해줘" → 이미지 경로를 imagePaths에, 질문을 prompt에
