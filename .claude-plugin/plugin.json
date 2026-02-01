@@ -1,0 +1,5 @@
+{
+  "name": "with-gemini",
+  "description": "Gemini 3 Pro 모델을 Claude Code에서 사용",
+  "version": "1.0.0"
+}
