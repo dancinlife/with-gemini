@@ -1,15 +1,13 @@
 {
-  "name": "with-gemini-marketplace",
+  "name": "with-gemini-local",
+  "owner": {
+    "name": "ghost"
+  },
   "plugins": [
     {
-      "id": "with-gemini",
       "name": "with-gemini",
-      "description": "Gemini 모델을 Claude Code에서 사용",
-      "version": "1.0.0",
-      "source": {
-        "type": "directory",
-        "path": "."
-      }
+      "source": "./",
+      "description": "Gemini 모델을 Claude Code에서 사용"
     }
   ]
 }

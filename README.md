@@ -14,7 +14,7 @@ npm run build
 
 ### 2. API 키 설정
 
-`GEMINI_API_KEY` 환경변수를 설정하세요:
+[Google AI Studio](https://aistudio.google.com/apikey)에서 API 키를 발급받고 환경변수를 설정하세요:
 
 ```bash
 export GEMINI_API_KEY="your-api-key-here"
@@ -56,12 +56,8 @@ claude --plugin-dir ~/dev/with-gemini
 
 ### 명령어
 
-- `/gemini <질문>` - Gemini에게 질문합니다
-
-### 예시
-
 ```
-/gemini 한국어로 인사해줘
+/gemini <질문>
 ```
 
 ## 제공 도구
