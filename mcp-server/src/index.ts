@@ -14,16 +14,21 @@ const ai = new GoogleGenAI({
 
 server.tool(
   "ask_gemini",
-  "Gemini 모델에게 질문합니다",
+  "Gemini 모델에게 질문합니다. 컨텍스트(코드, 대화 내용 등)를 함께 전달할 수 있습니다.",
   {
     prompt: z.string().describe("질문 내용"),
+    context: z.string().optional().describe("관련 컨텍스트 (코드, 파일 내용, 대화 기록 등)"),
     model: z.string().optional().describe("모델명 (기본: gemini-2.5-pro)"),
   },
-  async ({ prompt, model }) => {
+  async ({ prompt, context, model }) => {
     try {
+      const fullPrompt = context
+        ? `<context>\n${context}\n</context>\n\n${prompt}`
+        : prompt;
+
       const response = await ai.models.generateContent({
         model: model || "gemini-2.5-pro",
-        contents: prompt,
+        contents: fullPrompt,
       });
 
       return {
