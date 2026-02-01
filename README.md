@@ -12,30 +12,35 @@ npm install
 npm run build
 ```
 
-### 2. API 키 설정
+### 2. API 키 설정 (권장 방식)
 
-[Google AI Studio](https://aistudio.google.com/apikey)에서 API 키를 발급받고 환경변수를 설정하세요:
-
-```bash
-export GEMINI_API_KEY="your-api-key-here"
-```
-
-또는 `~/.zshrc` (또는 `~/.bashrc`)에 추가:
+[Google AI Studio](https://aistudio.google.com/apikey)에서 API 키를 발급받고, Claude Code MCP 명령으로 등록하세요:
 
 ```bash
-echo 'export GEMINI_API_KEY="your-api-key-here"' >> ~/.zshrc
+claude mcp add with-gemini \
+  -s user \
+  -- node ~/dev/with-gemini/mcp-server/dist/index.js \
+  -e GEMINI_API_KEY=your-api-key-here
 ```
+
+이 방식은 API 키를 Claude Code 설정에 직접 저장하므로 환경변수 로드 문제 없이 안정적으로 작동합니다.
+
+> **참고**: 기존에 환경변수(`export GEMINI_API_KEY=...`)로 설정한 경우, MCP 서버 재시작 시 간헐적으로 키를 인식하지 못할 수 있습니다.
 
 ## 사용법
 
 ### 플러그인 로드
 
-**방법 1: 수동 로드**
+**방법 1: MCP 서버로 등록 (권장)**
+
+위의 `claude mcp add` 명령으로 등록하면 자동으로 로드됩니다.
+
+**방법 2: 플러그인 디렉토리 지정**
 ```bash
 claude --plugin-dir ~/dev/with-gemini
 ```
 
-**방법 2: 자동 로드 (설정 파일)**
+**방법 3: 자동 로드 (설정 파일)**
 
 `~/.claude/settings.json`에 추가:
 ```json
@@ -53,6 +58,8 @@ claude --plugin-dir ~/dev/with-gemini
   }
 }
 ```
+
+> **주의**: 방법 2, 3을 사용할 경우 API 키를 환경변수로 설정해야 합니다.
 
 ### 명령어
 
@@ -91,7 +98,22 @@ claude --plugin-dir ~/dev/with-gemini
 
 ## 다른 사용자에게 배포
 
-**GitHub에서 설치:**
+**방법 1: MCP 서버로 설치 (권장)**
+
+```bash
+# 저장소 클론
+git clone https://github.com/dancinlife/with-gemini.git ~/dev/with-gemini
+cd ~/dev/with-gemini/mcp-server
+npm install && npm run build
+
+# Claude Code에 등록
+claude mcp add with-gemini \
+  -s user \
+  -- node ~/dev/with-gemini/mcp-server/dist/index.js \
+  -e GEMINI_API_KEY=your-api-key-here
+```
+
+**방법 2: 플러그인으로 설치**
 
 `~/.claude/settings.json`:
 ```json
@@ -113,4 +135,4 @@ claude --plugin-dir ~/dev/with-gemini
 ## 요구사항
 
 - Node.js 18+
-- `GEMINI_API_KEY` 환경변수 ([Google AI Studio](https://aistudio.google.com/apikey)에서 발급)
+- Gemini API 키 ([Google AI Studio](https://aistudio.google.com/apikey)에서 발급)
